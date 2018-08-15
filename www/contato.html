@@ -39,8 +39,8 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             
-            var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
-            //var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 1);
+            //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
+            var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 1);
             myDB.transaction(function(transaction) {
                 var sql = "CREATE TABLE IF NOT EXISTS contato (";
                 sql = sql + "id integer primary key,";
