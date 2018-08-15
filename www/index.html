@@ -63,8 +63,8 @@
 </html>
 <script src="/js/jquery.min.js"></script>
 <script type="text/javascript">
-    var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
-    //var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 1);
+    //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
+    var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 1);
     myDB.transaction(function(transaction) {
         transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
             var ln = "";
