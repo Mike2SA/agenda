@@ -39,7 +39,8 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             
-            //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
+            function salvar(){
+                //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
             var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 1);
             myDB.transaction(function(transaction) {
                 var sql = "CREATE TABLE IF NOT EXISTS contato (";
@@ -51,8 +52,7 @@
                 
                 transaction.executeSql(sql);
             });
-
-            function salvar(){
+                
                 var id          = document.getElementById('id').value;
                 var nome        = document.getElementById('nome').value;
                 var sobrenome   = document.getElementById('sobrenome').value;
