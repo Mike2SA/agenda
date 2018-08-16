@@ -73,7 +73,7 @@
                         alert('Contato salvo!');
                     },
                     function(error){
-                        alert('Ocorreu algum erro! '+error.code);
+                        alert('Ocorreu algum erro! '+JSON.stringify(error));
                     });
                 });
 
