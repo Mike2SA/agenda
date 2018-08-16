@@ -44,6 +44,7 @@
             function deletar(){
                 var id = document.getElementById('id').value;
 
+                var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
                 myDB.transaction(function(transaction) {
                 var executeQuery = "DELETE FROM contato where id=?";
                 transaction.executeSql(executeQuery, [id],
@@ -83,7 +84,7 @@
 </html>
 <script type="text/javascript">
     var json = getUrlVars();
-    var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 1);
+    var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
     myDB.transaction(function(transaction) {
         transaction.executeSql('SELECT * FROM contato WHERE id=?', [json.id], 
         function (tx, results) {
