@@ -33,7 +33,6 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-glyphicons.css" rel="stylesheet">
         <title>Agenda App</title>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
@@ -64,33 +63,37 @@
 <script src="/js/jquery.min.js"></script>
 <script type="text/javascript">
     //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
-    var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 1);
-    myDB.transaction(function(transaction) {
-        transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
-            var ln = "";
-            var len = results.rows.length, i;
-            $("#rowCount").append(len);
-            for (i = 0; i < len; i++){
-            
-                var id          = results.rows.item(i).id;
-                var nome        = results.rows.item(i).nome;
-                var sobrenome   = results.rows.item(i).sobrenome;
-                var telefone    = results.rows.item(i).telefone;
-                var sigla       = nome.substring(0,1)+sobrenome.substring(0,1)
+    
+    document.addEventListener("deviceready", function(){
+        var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
+        myDB.transaction(function(transaction) {
+            transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
+                var ln = "";
+                var len = results.rows.length, i;
+                $("#rowCount").append(len);
+                for (i = 0; i < len; i++){
+                
+                    var id          = results.rows.item(i).id;
+                    var nome        = results.rows.item(i).nome;
+                    var sobrenome   = results.rows.item(i).sobrenome;
+                    var telefone    = results.rows.item(i).telefone;
+                    var sigla       = nome.substring(0,1)+sobrenome.substring(0,1)
 
-                ln = "<tr onclick='consultar("+id+")'>";
-                ln = ln + '<td width="60"><div class="inicial-nome" style="background-color: '+gera_cor()+';">'+sigla+'</div></td>';
-                ln = ln + '<td>';
-                ln = ln + '<div class="contato-nome">'+nome+' '+sobrenome+'</div>';
-                ln = ln + '<div class="contato-numero">'+telefone+'</div>';
-                ln = ln + '</td>';
-                ln = ln + '<td align="right" width="30"><div class="icon-call"></div></td>';
-                ln = ln + '</tr>';
+                    ln = "<tr onclick='consultar("+id+")'>";
+                    ln = ln + '<td width="60"><div class="inicial-nome" style="background-color: '+gera_cor()+';">'+sigla+'</div></td>';
+                    ln = ln + '<td>';
+                    ln = ln + '<div class="contato-nome">'+nome+' '+sobrenome+'</div>';
+                    ln = ln + '<div class="contato-numero">'+telefone+'</div>';
+                    ln = ln + '</td>';
+                    ln = ln + '<td align="right" width="30"><div class="icon-call"></div></td>';
+                    ln = ln + '</tr>';
 
-                $("#TableData").append(ln);
-            }
-        }, null);
-    });
+                    $("#TableData").append(ln);
+                }
+            }, null);
+        });
+
+    }
 
     // gera uma cor aleatória em hexadecimal
     function gera_cor(){
