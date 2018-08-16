@@ -36,7 +36,7 @@
     <icon src="icon.png"          gap:platform="webos" />
     <icon src="icon.png"  gap:platform="winphone" />
     <icon src="icon.png" gap:platform="winphone"   gap:role="background" />
-    <plugin name="cordova-sqlite-storage" spec="^2.4.0" />
+    <plugin name="cordova-plugin-sqlite" spec="^1.0.3" />
 
     
 
