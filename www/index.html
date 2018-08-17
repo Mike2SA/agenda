@@ -49,6 +49,69 @@
             // Now safe to use device APIs
             alert('aqui');
         }
+        
+        
+        
+        document.addEventListener("deviceready", listarContatos, false);
+        function listarContatos() {
+            alert('aqui');
+            var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
+            myDB.transaction(function(transaction) {
+                transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
+                    var ln = "";
+                    //var len = results.rows.length, i;
+                    var len = results.rows.length;
+                    var i = 0;
+                    //$("#rowCount").append(len);
+                    for (i = 0; i < len; i++){
+
+                        var id          = results.rows.item(i).id;
+                        var nome        = results.rows.item(i).nome;
+                        var sobrenome   = results.rows.item(i).sobrenome;
+                        var telefone    = results.rows.item(i).telefone;
+                        var sigla       = nome.substring(0,1)+sobrenome.substring(0,1)
+
+                        ln = "<tr onclick='consultar("+id+")'>";
+                        ln = ln + '<td width="60"><div class="inicial-nome" style="background-color: '+gera_cor()+';">'+sigla+'</div></td>';
+                        ln = ln + '<td>';
+                        ln = ln + '<div class="contato-nome">'+nome+' '+sobrenome+'</div>';
+                        ln = ln + '<div class="contato-numero">'+telefone+'</div>';
+                        ln = ln + '</td>';
+                        ln = ln + '<td align="right" width="30"><div class="icon-call"></div></td>';
+                        ln = ln + '</tr>';
+
+                        var tabela = document.getElementById('TableData');
+                        tabela.innerHTML = tabela.innerHTML + ln;
+                        //$("#TableData").append(ln);
+                    }
+                }, 
+                function(error){
+                    alert('Ocorreu algum erro! '+JSON.stringify(error));
+                });
+
+            });
+
+        }
+
+
+
+        // gera uma cor aleatória em hexadecimal
+        function gera_cor(){
+            var hexadecimais = '0123456789ABCDEF';
+            var cor = '#';
+
+            // Pega um número aleatório no array acima
+            for (var i = 0; i < 6; i++ ) {
+            //E concatena à variável cor
+                cor += hexadecimais[Math.floor(Math.random() * 16)];
+            }
+            return cor;
+        }
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            listarContatos();
+        });
+        
     
     </script>
     <body>
@@ -70,69 +133,3 @@
         <input type="hidden" id="rowCount">
     </body>
 </html>
-<script src="/js/jquery.min.js"></script>
-<script type="text/javascript">
-    //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
-    
-    //document.addEventListener("deviceready", function(){
-    //document.addEventListener("deviceready", listarContatos, false);
-    
-    function listarContatos() {
-        alert('aqui');
-        var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
-        myDB.transaction(function(transaction) {
-            transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
-                var ln = "";
-                //var len = results.rows.length, i;
-                var len = results.rows.length;
-                var i = 0;
-                //$("#rowCount").append(len);
-                for (i = 0; i < len; i++){
-                
-                    var id          = results.rows.item(i).id;
-                    var nome        = results.rows.item(i).nome;
-                    var sobrenome   = results.rows.item(i).sobrenome;
-                    var telefone    = results.rows.item(i).telefone;
-                    var sigla       = nome.substring(0,1)+sobrenome.substring(0,1)
-
-                    ln = "<tr onclick='consultar("+id+")'>";
-                    ln = ln + '<td width="60"><div class="inicial-nome" style="background-color: '+gera_cor()+';">'+sigla+'</div></td>';
-                    ln = ln + '<td>';
-                    ln = ln + '<div class="contato-nome">'+nome+' '+sobrenome+'</div>';
-                    ln = ln + '<div class="contato-numero">'+telefone+'</div>';
-                    ln = ln + '</td>';
-                    ln = ln + '<td align="right" width="30"><div class="icon-call"></div></td>';
-                    ln = ln + '</tr>';
-                    
-                    var tabela = document.getElementById('TableData');
-                    tabela.innerHTML = tabela.innerHTML + ln;
-                    //$("#TableData").append(ln);
-                }
-            }, 
-            function(error){
-                alert('Ocorreu algum erro! '+JSON.stringify(error));
-            });
-            
-        });
-
-    }
-    
-    
-
-    // gera uma cor aleatória em hexadecimal
-    function gera_cor(){
-        var hexadecimais = '0123456789ABCDEF';
-        var cor = '#';
-      
-        // Pega um número aleatório no array acima
-        for (var i = 0; i < 6; i++ ) {
-        //E concatena à variável cor
-            cor += hexadecimais[Math.floor(Math.random() * 16)];
-        }
-        return cor;
-    }
-    
-    document.addEventListener("DOMContentLoaded", function(event) {
-        listarContatos();
-    });
-</script>
