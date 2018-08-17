@@ -68,7 +68,7 @@
     document.addEventListener("deviceready", listarContatos, false);
     
     function listarContatos() {
-        var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
+        var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
         myDB.transaction(function(transaction) {
             transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
                 var ln = "";
