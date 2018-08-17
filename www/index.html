@@ -67,8 +67,10 @@
     
     //document.addEventListener("deviceready", function(){
     //document.addEventListener("deviceready", listarContatos, false);
+    document.addEventListener("deviceready", listarContatos, false);
     
     function listarContatos() {
+        alert('aqui');
         var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
         myDB.transaction(function(transaction) {
             transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
