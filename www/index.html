@@ -89,7 +89,7 @@
                     var sigla       = nome.substring(0,1)+sobrenome.substring(0,1)
 
                     ln = "<tr onclick='consultar("+id+")'>";
-                    //ln = ln + '<td width="60"><div class="inicial-nome" style="background-color: '+gera_cor()+';">'+sigla+'</div></td>';
+                    ln = ln + '<td width="60"><div class="inicial-nome" style="background-color: '+gera_cor()+';">'+sigla+'</div></td>';
                     ln = ln + '<td>';
                     ln = ln + '<div class="contato-nome">'+nome+' '+sobrenome+'</div>';
                     ln = ln + '<div class="contato-numero">'+telefone+'</div>';
@@ -97,7 +97,7 @@
                     ln = ln + '<td align="right" width="30"><div class="icon-call"></div></td>';
                     ln = ln + '</tr>';
 
-                    //$("#TableData").append(ln);
+                    $("#TableData").append(ln);
                 }
             }, 
             function(error){
