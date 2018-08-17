@@ -95,7 +95,11 @@
 
                     $("#TableData").append(ln);
                 }
-            }, null);
+            }, 
+            function(error){
+                alert('Ocorreu algum erro! '+JSON.stringify(error));
+            });
+            
         });
 
     }
