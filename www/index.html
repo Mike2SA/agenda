@@ -41,8 +41,17 @@
         function consultar(id){
             location.href = 'ver.html?id='+id;
         }
+        function onLoad(){
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+
+        function onDeviceReady() {
+            // Now safe to use device APIs
+            alert('aqui');
+        }
+    
     </script>
-    <body>
+    <body onload="onLoad()">
         <nav>
             <div class="topo">
                 <div class="titulo">Agenda</div>
@@ -67,11 +76,6 @@
     
     //document.addEventListener("deviceready", function(){
     //document.addEventListener("deviceready", listarContatos, false);
-    document.addEventListener("deviceready", onDeviceReady, false);
-    
-    function onDeviceReady(){
-        alert('device is ready');
-    }
     
     function listarContatos() {
         alert('aqui');
