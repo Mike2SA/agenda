@@ -64,7 +64,7 @@
 <script type="text/javascript">
     //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
     
-    document.addEventListener("deviceready", function(){
+    //document.addEventListener("deviceready", function(){
         var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
         myDB.transaction(function(transaction) {
             transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
@@ -93,7 +93,7 @@
             }, null);
         });
 
-    }
+    //}
 
     // gera uma cor aleatória em hexadecimal
     function gera_cor(){
