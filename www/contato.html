@@ -107,8 +107,8 @@
         <input type="hidden" id="id">
         <nav>
             <div class="topo">
-                <div class="voltar" onclick="location.href = '/'"></div>
-                <span class="titulo">Criar contato</span>                
+                <div class="voltar" onclick="location.href = 'index.html'"></div>
+                <span class="titulo" onclick="consultar()">Criar contato</span>                
                 <div class="save" onclick="salvar()"></div>
             </div>           
             <div class="grade">
@@ -132,20 +132,23 @@
     </body>
 </html>
 <script>
-    var json = getUrlVars();
-    if(json.id){
+    
+    function consultar(){
+        var json = getUrlVars();
+        if(json.id){
 
-        var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
-        myDB.transaction(function(transaction) {
-            transaction.executeSql('SELECT * FROM contato WHERE id=?', [json.id], function (tx, results) {
-                var i = 0;
-                document.getElementById('id').value = results.rows.item(i).id;
-                document.getElementById('nome').value = results.rows.item(i).nome;
-                document.getElementById('sobrenome').value = results.rows.item(i).sobrenome;
-                document.getElementById('telefone').value = results.rows.item(i).telefone;
-                document.getElementById('email').value = results.rows.item(i).email;
-            }, null);
-        });
+            var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
+            myDB.transaction(function(transaction) {
+                transaction.executeSql('SELECT * FROM contato WHERE id=?', [json.id], function (tx, results) {
+                    var i = 0;
+                    document.getElementById('id').value = results.rows.item(i).id;
+                    document.getElementById('nome').value = results.rows.item(i).nome;
+                    document.getElementById('sobrenome').value = results.rows.item(i).sobrenome;
+                    document.getElementById('telefone').value = results.rows.item(i).telefone;
+                    document.getElementById('email').value = results.rows.item(i).email;
+                }, null);
+            });
 
+        }
     }
 </script>
