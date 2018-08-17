@@ -52,7 +52,6 @@
         
         
         
-        document.addEventListener("deviceready", listarContatos, false);
         function listarContatos() {
             alert('aqui');
             var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
@@ -114,11 +113,11 @@
         
     
     </script>
-    <body>
+    <body onload="document.getElementById('lupa').focus()">
         <nav>
             <div class="topo">
                 <div class="titulo">Agenda</div>
-                <div class="lupa"><img src="img/search.svg" width="30" height="30"></span></div>
+                <div class="lupa" id="lupa" onfocus="listarContatos()"><img src="img/search.svg" width="30" height="30"></span></div>
             </div>
             <div class="grade">
                 <table width="100%" id="TableData">
