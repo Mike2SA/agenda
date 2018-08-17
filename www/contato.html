@@ -73,7 +73,7 @@
                 }
                 transaction.executeSql(sql, [nome,sobrenome,telefone,email]
                     , function(tx, result) {
-                        alert('Contato salvo!');
+                        //alert('Contato salvo!');
                     },
                     function(error){
                         alert('Ocorreu algum erro! '+JSON.stringify(error));
@@ -86,6 +86,14 @@
                     }*/
                     
                 });
+                
+                myDB.transaction(function(transaction) {
+                transaction.executeSql('SELECT MAX(id) FROM contato', [], 
+                function (tx, results) {
+                    var i = 0;
+                    alert("Ultimo ID: "+results.rows.item(i).id);
+                }, null);
+            });
 
                 
 
