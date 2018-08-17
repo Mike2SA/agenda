@@ -69,7 +69,6 @@
     //document.addEventListener("deviceready", listarContatos, false);
     
     function listarContatos() {
-        alert('here i am');
         var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
         myDB.transaction(function(transaction) {
             transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
@@ -85,7 +84,6 @@
                     var nome        = results.rows.item(i).nome;
                     var sobrenome   = results.rows.item(i).sobrenome;
                     var telefone    = results.rows.item(i).telefone;
-                    alert(id + " - "+ nome);
                     var sigla       = nome.substring(0,1)+sobrenome.substring(0,1)
 
                     ln = "<tr onclick='consultar("+id+")'>";
