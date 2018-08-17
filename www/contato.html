@@ -40,11 +40,16 @@
         <script type="text/javascript">
             
             //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
+            var myDB;
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
+            }
             
             function salvar(){
 
                 //var myDB = window.openDatabase("agenda.db", "1.0", "Demo", 2000000);
-                var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 2000000);
+                myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
             myDB.transaction(function(transaction) {
                 var sql = "CREATE TABLE IF NOT EXISTS contato (";
                 sql = sql + "id integer primary key,";
