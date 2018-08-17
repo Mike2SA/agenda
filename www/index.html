@@ -113,11 +113,11 @@
         
     
     </script>
-    <body onload="document.getElementById('lupa').focus()">
+    <body>
         <nav>
             <div class="topo">
                 <div class="titulo">Agenda</div>
-                <div class="lupa" id="lupa" onfocus="listarContatos()"><img src="img/search.svg" width="30" height="30"></span></div>
+                <div class="lupa" id="lupa" onclick="listarContatos()"><img src="img/search.svg" width="30" height="30"></span></div>
             </div>
             <div class="grade">
                 <table width="100%" id="TableData">
@@ -126,8 +126,7 @@
                     </tr>                    
                 </table>
             </div>
-            <!--<div class="btn-novo" onclick="location.href = 'contato.html'">+</div>-->
-            <div class="btn-novo" onclick="listarContatos();">+</div>        
+            <div class="btn-novo" onclick="location.href = 'contato.html'">+</div>
         </nav>
         <input type="hidden" id="rowCount">
     </body>
