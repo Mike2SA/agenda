@@ -51,7 +51,7 @@
         }
     
     </script>
-    <body onload="listarContatos()">
+    <body>
         <nav>
             <div class="topo">
                 <div class="titulo">Agenda</div>
@@ -132,5 +132,7 @@
         return cor;
     }
     
-    
+    document.addEventListener("DOMContentLoaded", function(event) {
+        listarContatos();
+    });
 </script>
