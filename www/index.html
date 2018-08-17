@@ -60,7 +60,7 @@
         <input type="hidden" id="rowCount">
     </body>
 </html>
-<script src="/js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <script type="text/javascript">
     //var myDB = window.sqlitePlugin.openDatabase({name: "agenda.db", location: 'default'});
     
@@ -72,11 +72,15 @@
         var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
         
             myDB.transaction(function(transaction) {
+                alert('entrei');
                 transaction.executeSql('SELECT count(*) as total FROM contato', [], 
                 function (tx, results) {
                     var i = 0;
                     alert("Total Registros: "+results.rows.item(i).total);
-                }, null);
+                }, 
+                function (error) {
+                    alert('deu meeeerda');
+                });
             });
         
         myDB.transaction(function(transaction) {
