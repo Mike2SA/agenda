@@ -96,8 +96,10 @@
                     ln = ln + '</td>';
                     ln = ln + '<td align="right" width="30"><div class="icon-call"></div></td>';
                     ln = ln + '</tr>';
-
-                    $("#TableData").append(ln);
+                    
+                    var tabela = document.getElementById('TableData');
+                    tabela.innerHTML = tabela.innerHTML + ln;
+                    //$("#TableData").append(ln);
                 }
             }, 
             function(error){
