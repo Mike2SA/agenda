@@ -70,19 +70,19 @@
     function listarContatos() {
         alert('here i am');
         var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
-        
-            myDB.transaction(function(transaction) {
-                alert('entrei');
-                transaction.executeSql('SELECT count(*) as total FROM contato', [], 
-                function (tx, results) {
-                    var i = 0;
-                    alert("Total Registros: "+results.rows.item(i).total);
-                }, 
-                function (error) {
-                    alert('deu meeeerda');
+                myDB.transaction(function(transaction) {
+                    alert('aqui');
+                    var sql = "CREATE TABLE IF NOT EXISTS contato (";
+                    sql = sql + "id integer primary key,";
+                    sql = sql + "nome text,";
+                    sql = sql + "sobrenome text,";
+                    sql = sql + "telefone text,";
+                    sql = sql + "email text)";
+
+                    transaction.executeSql(sql);
                 });
-            });
-        
+
+        alert('aqui');
         myDB.transaction(function(transaction) {
             transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
                 alert(results.rows.length);
