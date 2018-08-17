@@ -41,16 +41,6 @@
         function consultar(id){
             location.href = 'ver.html?id='+id;
         }
-        function onLoad(){
-            document.addEventListener("deviceready", onDeviceReady, false);
-        }
-
-        function onDeviceReady() {
-            // Now safe to use device APIs
-            alert('aqui');
-        }
-        
-        
         
         function listarContatos() {
             alert('aqui');
@@ -107,17 +97,13 @@
             return cor;
         }
 
-        document.addEventListener("DOMContentLoaded", function(event) {
-            listarContatos();
-        });
         
-    
     </script>
-    <body>
+    <body onload="document.getElementById('lupa').focus()">
         <nav>
             <div class="topo">
                 <div class="titulo">Agenda</div>
-                <div class="lupa" id="lupa" onclick="listarContatos()"><img src="img/search.svg" width="30" height="30"></span></div>
+                <div class="lupa" id="lupa" onfocus="listarContatos()"><img src="img/search.svg" width="30" height="30"></span></div>
             </div>
             <div class="grade">
                 <table width="100%" id="TableData">
