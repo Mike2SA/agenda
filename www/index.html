@@ -67,7 +67,11 @@
     
     //document.addEventListener("deviceready", function(){
     //document.addEventListener("deviceready", listarContatos, false);
-    document.addEventListener("deviceready", listarContatos, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
+    
+    function onDeviceReady(){
+        alert('device is ready');
+    }
     
     function listarContatos() {
         alert('aqui');
