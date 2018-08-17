@@ -72,7 +72,6 @@
         var myDB = sqlitePlugin.openDatabase("agenda.db", "1.0", "Demo", 1);
         myDB.transaction(function(transaction) {
             transaction.executeSql('SELECT * FROM contato', [], function (tx, results) {
-                alert(results.rows.length);
                 var ln = "";
                 //var len = results.rows.length, i;
                 var len = results.rows.length;
